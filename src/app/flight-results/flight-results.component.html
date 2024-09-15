@@ -1,0 +1,107 @@
+
+ <!-- flight-results.component.html -->
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<header>
+    <h1>Flight Search</h1>
+</header>
+
+<body>
+  <div class="container">
+    
+    <!-- Right Aside: Flight Table -->
+    <aside class="aside-right">
+      <div class="table-wrapper table-1">
+        <table>
+          <thead>
+            <tr *ngIf="flights.length > 0">
+              <th>IATA_CODE</th>
+              <th>Name</th>
+              <th>Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let flight of flightss">
+              <td>{{ flight.IATA_CODE }}</td>
+              <td>{{ flight.Name }}</td>
+              <td>{{ flight.Price }}</td>
+            </tr>
+            <tr *ngIf="!flightss || flightss.length === 0">
+              <td colspan="3">No flights currently</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </aside>      
+
+    <!-- Search Form -->
+    <main class="col-md-5 mx-auto mt-4">
+        <p>flight-results works!</p>
+
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Price</th>
+              <th>Departure Date</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+           
+          <!--    <tr *ngFor="let flight of flights">  -->
+              <tr *ngIf="searchCriteria"> 
+              
+              <td>{{ searchCriteria.Name }}</td> <!-- Ensure the field names match your API response -->
+              <td>{{ searchCriteria.Price }}</td>
+              <td>{{ searchCriteria.date }}</td>
+           
+            
+              <td>
+                <!-- <a [routerLink]="['/ticket-details', flight._id]" class="btn btn-primary">book Ticket</a> -->
+                <!-- <button (click)="downloadTicket(flight)" class="btn btn-secondary">Download Ticket</button> -->
+                <button (click)="bookTicket(flights)" class="btn btn-secondary">book Ticket</button> 
+                
+                <!-- 
+                <a [routerLink]="['/customer-details']" class="btn btn-primary">book Ticket</a> -->
+              </td>
+            </tr> 
+            
+           <!--  hh -->
+            <tr *ngIf="flights.length === 0">
+              <td colspan="4">No flights found</td>
+            </tr>
+          
+          </tbody>
+        </table>
+        <a [routerLink]="['/']" class="btn btn-primary">serach once again</a> 
+    </main>
+   
+    <!-- Left Aside: City Table -->
+    <aside class="aside-left">
+      <div class="table-wrapper table-2">
+        <table>
+          <thead>
+            <tr *ngIf="city.length > 0">
+              <th>IATA_CODE</th>
+              <th>City</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let cit of city">
+              <td>{{ cit.IATA_CODE }}</td>
+              <td>{{ cit.City }}</td>
+            </tr>
+            <tr *ngIf="!city || city.length === 0">
+              <td colspan="2">No cities currently</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </aside>
+  </div>
+</body>

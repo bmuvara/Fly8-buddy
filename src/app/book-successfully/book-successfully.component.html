@@ -1,0 +1,13 @@
+<p>you have book Ticket-successfully</p>
+
+<p>No flight Available</p>
+
+<a [routerLink]="['/']" class="btn btn-primary">serach again</a> 
+<!-- <div>
+<h2>Ticket Successfully Booked!</h2>
+<p>Your ticket has been booked successfully. Click the link below to view your ticket details.</p>
+<a [routerLink]="['ticket-details/:id']" [state]="{ flightDetails: flightDetails, customerDetails: customerDetails }">View Ticket Details</a>
+</div> -->
+
+<p>Your ticket has been successfully booked!</p>
+<button (click)="goToTicketDetails()">View Ticket Details</button>

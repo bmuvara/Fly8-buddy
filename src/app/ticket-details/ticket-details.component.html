@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Ticket Details</title>
+
+</head>
+
+
+<body>
+    
+<h2>Your Ticket has been booked successfully!</h2>
+
+    <a [routerLink]="['/']" class="btn btn-primary">search again</a> 
+
+<p> Click the Download Ticket button below to download your ticket details.</p>
+
+
+<div #ticketContent>
+<div class="mb-4">
+<h2>customer-details</h2>
+<div *ngIf="passengerDetails">
+<p><strong>First Adult Name:</strong>{{passengerDetails.firstAdultName}}</p>
+<p><strong>Second Adult Name:</strong>{{passengerDetails.secondAdultName}}</p>
+<p><strong>Children Name:</strong>{{passengerDetails.childName}}</p>
+</div>
+</div>
+
+<!-- Handle Cse where no details are present -->
+
+<div *ngIf="!passengerDetails">
+
+    <p>No passenger details available</p>
+</div>
+
+<!-- <div *ngFor="let flight of flights">
+ -->
+ <div class="mb-4">
+ <div *ngIf="flightDetails">
+        <h2>Ticket Details for {{ flightDetails.Name }}</h2>
+    <p><strong>Flight Name:</strong> {{ flightDetails.Name }}</p>
+    <p><strong>Price:</strong> {{ flightDetails.Price | currency }}</p>
+    <p><strong>Date:</strong> {{ flightDetails.date }}</p>
+    <p><strong>From:</strong> {{ flightDetails.IATA_CODE }}</p>
+ </div>
+    </div>
+    
+
+   
+    <!-- Important Information Section -->
+    <div class="mb-4">
+        <div class="section-header">
+            <h4>Important Information</h4>
+        </div>
+        <ul>
+            <li>Please arrive at the airport at least 3 hours before your scheduled departure.</li>
+            <li>Carry a valid government-issued ID for check-in.</li>
+            <li>Check-in online to avoid long queues at the airport.</li>
+            <li>Baggage allowance: 1 check-in bag (up to 23kg) and 1 carry-on bag (up to 7kg).</li>
+            <li>In case of any changes to your flight, you will be notified via email or SMS.</li>
+        </ul>
+    </div>
+
+   
+
+
+
+    <div *ngIf="!flightDetails || flightDetails.length === 0">
+    <p>No flight details available.</p>
+  </div>
+</div>
+<div >
+
+    
+    <button (click)="downloadTicket()" class="btn btn-secondary">Download Ticket</button>
+</div>
+
+ <!-- Footer -->
+ <div class="text-center">
+    <p>Thank you for choosing FlyAir! Have a pleasant flight.</p>
+
+</div>    
+</body>
+</html>

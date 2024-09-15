@@ -1,0 +1,47 @@
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+ /*  .aside-right, .aside-left {
+    flex: 1;
+    margin: 10px;
+    width: 30%; 
+    padding: 20px;
+    background-color: #31b473;
+    border-radius: 10px;
+  } */
+  
+  .main-content {
+    flex: 2;
+    margin: 10px;
+  }
+  
+  .table-wrapper {
+    overflow-x: auto;
+    margin: 10px 0;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  table, th, td {
+    border: 1px solid #ddd;
+  }
+  
+  th, td {
+    padding: 8px;
+    text-align: left;
+  }
+  
+  th {
+    background-color: #f2f2f2;
+  }
+  
+  .alert {
+    color: red;
+  }
+  

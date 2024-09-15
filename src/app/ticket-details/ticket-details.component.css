@@ -1,0 +1,32 @@
+
+body {
+    font-family: Arial, sans-serif;
+}
+h2, h4 {
+    color: #333;
+}
+
+table {
+    width: 50%;
+    border-collapse: collapse;
+    font-size: 10px; /* Smaller font size */
+}
+table, th, td {
+  font-size: 10px; /* Smaller font size */
+    border: 1px solid #ddd;
+}
+th, td {
+    padding: 4px;
+    text-align: left;
+    border: 1px solid #ddd;
+    font-size: 10px; /* Smaller font size */
+}
+th {
+    background-color: #f2f2f2;
+}
+.text-center {
+    text-align: center;
+}
+.hide-in-pdf {
+    display: none;
+}

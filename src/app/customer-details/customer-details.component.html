@@ -1,0 +1,73 @@
+<p>customer-details works!</p>
+<div class="container mt-4">
+    <h2>Enter Passenger Details</h2>
+  
+    <form (ngSubmit)="proceedToTicketDetails()" #passengerForm="ngForm" novalidate>
+      <!-- First Adult Name -->
+      <div class="form-group">
+        <label for="firstAdultName">First Adult Name:</label>
+        <input
+          type="text"
+          id="firstAdultName"
+          name="firstAdultName"
+          class="form-control"
+          [(ngModel)]="passengerDetails.firstAdultName"
+          required
+        />
+        <div
+          *ngIf="passengerForm.controls['firstAdultName']?.invalid && (passengerForm.controls['firstAdultName']?.dirty || passengerForm.controls['firstAdultName']?.touched)"
+          class="alert alert-danger"
+        >
+          First adult name is required.
+        </div>
+      </div>
+      
+  
+      <!-- Second Adult Name -->
+      <div class="form-group">
+        <label for="secondAdultName">Second Adult Name:</label>
+        <input
+          type="text"
+          id="secondAdultName"
+          name="secondAdultName"
+          class="form-control"
+          [(ngModel)]="passengerDetails.secondAdultName"
+          required
+        />
+        <div
+          *ngIf="passengerForm.controls['secondAdultName']?.invalid && (passengerForm.controls['secondAdultName']?.dirty || passengerForm.controls['secondAdultName']?.touched)"
+          class="alert alert-danger"
+        >
+          Second adult name is required.
+        </div>
+      </div>
+      
+  
+  
+      <!-- Children Names -->
+      <div class="form-group">
+        <label for="childName">Child Name:</label>
+        <input
+          type="text"
+          id="childName"
+          name="childName"
+          class="form-control"
+          [(ngModel)]="passengerDetails.childName"
+          required
+        />
+        <div
+          *ngIf="passengerForm.controls['childName']?.invalid && (passengerForm.controls['childName']?.dirty || passengerForm.controls['childName']?.touched)"
+          class="alert alert-danger"
+        >
+          Second adult name is required.
+        </div>
+      </div>
+  
+      <!--  Button to reset -->
+     <button type="button" class="btn btn-secondary mt-2" (click)="resetForm(passengerForm)">Reset</button>
+ 
+      <!-- Submit Button -->
+      <button type="submit" class="btn btn-primary mt-3" [disabled]="passengerForm.invalid">Submit</button>
+    </form>
+  </div>
+  

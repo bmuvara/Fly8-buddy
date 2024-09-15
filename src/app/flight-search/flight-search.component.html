@@ -1,0 +1,138 @@
+
+
+<body>
+  <div class="container">
+    <div class="row">
+      <!-- Right Aside: Flight Table -->
+      <aside class="col-md-3">
+        <div class="table-wrapper table-1">
+          <table class="table table-bordered">
+            <thead>
+              <tr *ngIf="flights.length > 0">
+                <th>IATA_CODE</th>
+                <th>Name</th>
+                <th>Price</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let flight of flights">
+                <td>{{ flight.IATA_CODE }}</td>
+                <td>{{ flight.Name }}</td>
+                <td>{{ flight.Price }}</td>
+              </tr>
+              <tr *ngIf="!flights || flights.length === 0">
+                <td colspan="3">No flights currently</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </aside>
+
+      <!-- Main Content: Search Form -->
+      <main class="col-md-6">
+        
+        <form (ngSubmit)="onSubmit()" #flightSearchForm="ngForm" novalidate>
+            <div class="row g-3">
+            <label>TRIP TYPE:</label>
+            <div class="col-md-6">
+            <div class="form-check">
+              <input type="radio" id="oneWay" name="tripType" class="form-check-input">
+                    
+              <label for="oneWay" class="form-check-label">One-Way</label>
+            </div>
+        </div>
+
+            <div class="col-md-6">
+            <div class="form-check">
+                <input type="radio" id="roundTrip" name="tripType" class="form-check-input">
+                      
+                <label for="roundTrip" class="form-check-label">One-Way</label>
+              </div>
+            </div>
+
+          
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="flyingFrom">FLYING FROM:</label>
+                <select id="flyingFrom" name="flyingFrom" class="form-control" [(ngModel)]="searchCriteria.flyingFrom" required>
+                  <option value="" disabled>Select a city</option>
+                  <option *ngFor="let city of cities" [value]="city.IATA_CODE">{{ city.City }}</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="flyingTo">FLYING TO:</label>
+                <select id="flyingTo" name="flyingTo" class="form-control" [(ngModel)]="searchCriteria.flyingTo" required>
+                  <option value="" disabled>Select a city</option>
+                  <option *ngFor="let city of cities" [value]="city.IATA_CODE">{{ city.City }}</option>
+                </select>
+              </div>
+            </div>
+
+            <div class=" col-sm-6 offset-md-6">
+              <div class="form-group">
+                <label for="date">DEPARTING:</label>
+                <input type="date" id="date" name="date" class="form-control" [(ngModel)]="searchCriteria.date" required>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="adults">ADULTS:</label>
+                <input type="number" id="adults" name="adults" class="form-control" [(ngModel)]="searchCriteria.adults" min="1" required>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="children">CHILDREN (0-17):</label>
+                <input type="number" id="children" name="children" class="form-control" [(ngModel)]="searchCriteria.children" min="0">
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="class">TRAVEL CLASS:</label>
+                <select id="class" name="class" class="form-control" [(ngModel)]="searchCriteria.travelClass" required>
+                  <option value="" disabled>Select a class</option>
+                  <option value="economy">Economy</option>
+                  <option value="business">Business</option>
+                  <option value="first">First</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="col-md-12">
+              <button type="submit" class="btn btn-primary" [disabled]="flightSearchForm.invalid">SHOW FLIGHTS</button>
+            </div>
+          </div>
+        </form>
+      </main>
+
+      <!-- Left Aside: City Table -->
+      <aside class="col-md-3">
+        <div class="table-wrapper table-2">
+          <table class="table table-bordered">
+            <thead>
+              <tr *ngIf="city.length > 0">
+                <th>IATA_CODE</th>
+                <th>City</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let cit of city">
+                <td>{{ cit.IATA_CODE }}</td>
+                <td>{{ cit.City }}</td>
+              </tr>
+              <tr *ngIf="!city || city.length === 0">
+                <td colspan="2">No cities currently</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </aside>
+    </div>
+  </div>
+</body>

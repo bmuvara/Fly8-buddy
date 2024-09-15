@@ -1,0 +1,15 @@
+/* Custom styles for the asides and container */
+.aside-left {
+    background-color: black;
+    color: yellow;
+  }
+  
+  .aside-right {
+    background-color: black;
+    color: green;
+  }
+  
+  .container {
+    background-color: whitesmoke;
+  }
+  

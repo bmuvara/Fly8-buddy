@@ -1,0 +1,279 @@
+<p>flight-search works!</p>
+<!-- flight-search.component.html -->
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<header>
+    <h1>Flight Search</h1>
+</header>
+
+<body>
+  <div class="container" >
+    
+    <!-- Right Aside: Flight Table -->
+    <aside class="aside-right">
+      <div class="table-wrapper table-1">
+        <table>
+          <thead>
+            <tr *ngIf="flights.length > 0">
+              <th>IATA_CODE</th>
+              <th>Name</th>
+              <th>Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let flight of flights">
+              <td>{{ flight.IATA_CODE }}</td>
+              <td>{{ flight.Name }}</td>
+              <td>{{ flight.Price }}</td>
+            </tr>
+            <tr *ngIf="!flights || flights.length === 0">
+              <td colspan="3">No flights currently</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </aside>  
+
+    <main  >
+<form (ngSubmit)="onSubmit()" #flightSearchForm="ngForm" novalidate>
+    <div class="col-md-6">
+    <div class="form-group">
+
+      <label for="flyingFrom">FLYING FROM:</label>
+      <select id="flyingFrom" name="flyingFrom" class="form-control" [(ngModel)]="searchCriteria.flyingFrom" required>
+        <option value="" disabled>Select a city</option>
+        <option *ngFor="let city of cities" [value]="city.IATA_CODE">{{ city.City }}</option>
+      </select>
+        </div>
+    </div>
+  
+    <div class="col-md-6">
+    <div class="form-group">
+        
+      <label for="flyingTo">FLYING TO:</label>
+      <select id="flyingTo" name="flyingTo" class="form-control" [(ngModel)]="searchCriteria.flyingTo" required>
+        <option value="" disabled>Select a city</option>
+        <option *ngFor="let city of cities" [value]="city.IATA_CODE">{{ city.City }}</option>
+      </select>
+        </div>
+    </div>
+  
+    <div class="col-md-6">
+    <div class="form-group">
+      <label for="date">DEPARTING:</label>
+      <input type="date" id="date" name="date" class="form-control" [(ngModel)]="searchCriteria.date" required>
+    </div>
+    </div>
+  
+    <div class="col-md-6">
+    <div class="form-group">
+      <label for="adults">ADULTS:</label>
+      <input type="number" id="adults" name="adults" class="form-control" [(ngModel)]="searchCriteria.adults" min="1" required>
+    </div>
+    </div>
+
+    <div class="col-md-6">
+    <div class="form-group">
+      <label for="children">CHILDREN (0-17):</label>
+      <input type="number" id="children" name="children" class="form-control" [(ngModel)]="searchCriteria.children" min="0">
+    </div>
+    </div>
+  
+    <div class="col-md-6">
+    <div class="form-group">
+      <label for="class">TRAVEL CLASS:</label>
+      <select id="class" name="class" class="form-control" [(ngModel)]="searchCriteria.travelClass" required>
+        <option value="" disabled>Select a class</option>
+        <option value="economy">Economy</option>
+        <option value="business">Business</option>
+        <option value="first">First</option>
+      </select>
+    </div>
+    </div>
+
+    <div class="col-md-12">
+    <button type="submit" class="btn btn-primary" [disabled]="flightSearchForm.invalid">SHOW FLIGHTS</button>
+    </div>  
+</form>
+  
+</main>
+
+    <!-- Left Aside: City Table -->
+    <aside class="aside-left">
+      <div class="table-wrapper table-2">
+        <table>
+          <thead>
+            <tr *ngIf="city.length > 0">
+              <th>IATA_CODE</th>
+              <th>City</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let cit of city">
+              <td>{{ cit.IATA_CODE }}</td>
+              <td>{{ cit.City }}</td>
+            </tr>
+            <tr *ngIf="!city || city.length === 0">
+              <td colspan="2">No cities currently</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </aside>
+  </div> 
+</body>
+
+
+
+
+X [ERROR] NG1: Property 'flights' does not exist on type 'TicketDetailsComponent'. Did you mean 'flight'? [plugin angular-compiler]
+
+    src/app/ticket-details/ticket-details.component.html:17:27:
+      17 │ <div *ngFor="let flight of flights">
+         ╵                            ~~~~~~~
+
+  Error occurs in the template of component TicketDetailsComponent.
+
+    src/app/ticket-details/ticket-details.component.ts:8:15:
+      8 │   templateUrl: './ticket-details.component.html',
+        ╵                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+X [ERROR] NG4: Expected 0 arguments, but got 1. [plugin angular-compiler]
+
+    src/app/ticket-details/ticket-details.component.html:29:36:
+      29 │ ...tton (click)="downloadTicket(flight)" class="btn btn-secondary"...
+         ╵                                 ~~~~~~
+
+  Error occurs in the template of component TicketDetailsComponent.
+
+    src/app/ticket-details/ticket-details.component.ts:8:15:
+      8 │   templateUrl: './ticket-details.component.html',
+        ╵                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Watch mode enabled. Watching for file changes...
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Ticket Details</title>
+
+</head>
+
+
+<body>
+    <div #ticketContent>
+<h2>Your Ticket has been booked successfully!</h2>
+<div>
+    <a [routerLink]="['/']" class="btn btn-primary">search again</a> 
+
+<p> Click the Download Ticket button below to download your ticket details.</p>
+
+</div> 
+
+<div class="mb-4">
+<h2>customer-details</h2>
+<div *ngIf="passengerDetails">
+<p><strong>First Adult Name:</strong>{{passengerDetails.firstAdultName}}</p>
+<p><strong>Second Adult Name:</strong>{{passengerDetails.secondAdultName}}</p>
+<p><strong>Children Name:</strong>{{passengerDetails.childName}}</p>
+</div>
+</div>
+
+<!-- Handle Cse where no details are present -->
+
+<div *ngIf="!passengerDetails">
+
+    <p>No passenger details available</p>
+</div>
+
+<!-- <div *ngFor="let flight of flights">
+ -->
+ <div class="mb-4">
+ <div *ngIf="flightDetails">
+        <h2>Ticket Details for {{ flightDetails.Name }}</h2>
+    <p><strong>Flight Name:</strong> {{ flightDetails.Name }}</p>
+    <p><strong>Price:</strong> {{ flightDetails.Price | currency }}</p>
+    <p><strong>Date:</strong> {{ flightDetails.date }}</p>
+    <p><strong>From:</strong> {{ flightDetails.IATA_CODE }}</p>
+ </div>
+    </div>
+    
+
+   <!-- Fare Breakdown Section -->
+    <div class="mb-4">
+        <div class="section-header">
+            <h4>Fare Breakdown</h4>
+        </div>
+        <table class="table fare-table">
+            <thead>
+                <tr>
+                    <th>Description</th>
+                    <th>Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Base Fare</td>
+                    <td>$400.00</td>
+                </tr>
+                <tr>
+                    <td>Taxes and Fees</td>
+                    <td>$50.00</td>
+                </tr>
+                <tr>
+                    <td>Baggage Fee</td>
+                    <td>$30.00</td>
+                </tr>
+                <tr>
+                    <td><strong>Total</strong></td>
+                    <td><strong>$480.00</strong></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Important Information Section -->
+    <div class="mb-4">
+        <div class="section-header">
+            <h4>Important Information</h4>
+        </div>
+        <ul>
+            <li>Please arrive at the airport at least 3 hours before your scheduled departure.</li>
+            <li>Carry a valid government-issued ID for check-in.</li>
+            <li>Check-in online to avoid long queues at the airport.</li>
+            <li>Baggage allowance: 1 check-in bag (up to 23kg) and 1 carry-on bag (up to 7kg).</li>
+            <li>In case of any changes to your flight, you will be notified via email or SMS.</li>
+        </ul>
+    </div>
+
+   
+
+
+
+    <div *ngIf="!flightDetails || flightDetails.length === 0">
+    <p>No flight details available.</p>
+  </div>
+
+<div class="hide-in-pdf">
+    
+    <button (click)="downloadTicket()" class="btn btn-secondary">Download Ticket</button>
+</div>
+
+ <!-- Footer -->
+ <div class="text-center">
+    <p>Thank you for choosing FlyAir! Have a pleasant flight.</p>
+</div>
+</div>    
+</body>
+</html>
